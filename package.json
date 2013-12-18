@@ -1,17 +1,17 @@
 {
-  "name": "gulp-coffee",
-  "description": "Compile CoffeeScript files",
+  "name": "gulp-iced-coffee",
+  "description": "Compile IcedCoffeeScript files",
   "version": "2.3.2",
-  "homepage": "http://github.com/wearefractal/gulp-coffee",
-  "repository": "git://github.com/wearefractal/gulp-coffee.git",
+  "homepage": "http://github.com/ccheever/gulp-iced-coffee",
+  "repository": "git://github.com/ccheever/gulp-iced-coffee.git",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
   "main": "./index.js",
   "keywords": [
     "gulpplugin"
   ],
   "dependencies": {
-    "coffee-script": "^1.10.0",
     "gulp-util": "^3.0.2",
+    "iced-coffee-script": "^108.0.11",
     "merge": "^1.2.0",
     "through2": "^0.6.3",
     "vinyl-sourcemaps-apply": "^0.1.4"

@@ -1,5 +1,5 @@
 var through = require('through2');
-var coffee = require('coffee-script');
+var iced = require('iced-coffee-script');
 var gutil = require('gulp-util');
 var applySourceMap = require('vinyl-sourcemaps-apply');
 var path = require('path');
@@ -33,7 +33,7 @@ module.exports = function (opt) {
     }, opt);
 
     try {
-      data = coffee.compile(str, options);
+      data = iced.compile(str, options);
     } catch (err) {
       return cb(new PluginError('gulp-coffee', err));
     }
