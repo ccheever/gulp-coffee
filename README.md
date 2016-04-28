@@ -1,9 +1,9 @@
-![status](https://secure.travis-ci.org/wearefractal/gulp-coffee.png?branch=master)
+[![Build Status](https://secure.travis-ci.org/doublerebel/gulp-iced-coffee.png?branch=master)](https://travis-ci.org/doublerebel/gulp-iced-coffee)
 
 ## Information
 
 <table>
-<tr> 
+<tr>
 <td>Package</td><td>gulp-iced-coffee</td>
 </tr>
 <tr>
@@ -12,7 +12,7 @@
 </tr>
 <tr>
 <td>Node Version</td>
-<td>>= 0.4</td>
+<td>>= 0.9</td>
 </tr>
 </table>
 
@@ -23,20 +23,88 @@ var iced = require('gulp-iced-coffee');
 
 gulp.task('iced', function() {
   gulp.src('./src/*.iced')
-    .pipe(iced({bare: true}))
+    .pipe(iced({bare: true}).on('error', gutil.log))
     .pipe(gulp.dest('./public/'))
 });
 ```
 
+### Error handling
+
+gulp-iced-coffee will emit an error for cases such as invalid iced coffeescript syntax. If uncaught, the error will crash gulp.
+
+You will need to attach a listener (i.e. `.on('error')`) for the error event emitted by gulp-iced-coffee:
+
+```javascript
+var coffeeStream = iced({bare: true});
+
+// Attach listener
+coffeeStream.on('error', function(err) {});
+```
+
+In addition, you may utilize [gulp-util](https://github.com/wearefractal/gulp-util)'s logging function:
+
+```javascript
+var gutil = require('gulp-util');
+
+// ...
+
+var coffeeStream = iced({bare: true});
+
+// Attach listener
+coffeeStream.on('error', gutil.log);
+
+```
+
+Since `.on(...)` returns `this`, you can compact it as inline code:
+
+```javascript
+
+gulp.src('./src/*.iced')
+  .pipe(iced({bare: true}).on('error', gutil.log))
+  // ...
+```
+
 ## Options
 
-The options object supports the same options as the standard CoffeeScript compiler 
+The options object supports the same options as the standard CoffeeScript compiler
+
+## Source maps
+
+gulp-iced-coffee can be used in tandem with [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps) to generate source maps for the coffee to javascript transition. You will need to initialize [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps) prior to running the gulp-iced-coffee compiler and write the source maps after.
+
+```javascript
+var sourcemaps = require('gulp-sourcemaps');
+
+gulp.src('./src/*.iced')
+  .pipe(sourcemaps.init())
+  .pipe(iced())
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('./dest/js'));
+
+// will write the source maps inline in the compiled javascript files
+```
+
+By default, [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps) writes the source maps inline in the compiled javascript files. To write them to a separate file, specify a relative file path in the `sourcemaps.write()` function.
+
+```javascript
+var sourcemaps = require('gulp-sourcemaps');
+
+gulp.src('./src/*.iced')
+  .pipe(sourcemaps.init())
+  .pipe(iced({ bare: true })).on('error', gutil.log)
+  .pipe(sourcemaps.write('./maps'))
+  .pipe(gulp.dest('./dest/js'));
+
+// will write the source maps to ./dest/js/maps
+```
 
 ## LICENSE
 
 (MIT License)
 
-Copyright (c) 2013 Fractal <contact@wearefractal.com>
+Copyright (c) 2015 Fractal <contact@wearefractal.com>
+
+Copyright (c) 2014, 2015 Double Rebel <charles@doublerebel.com>
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the

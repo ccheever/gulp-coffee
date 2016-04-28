@@ -1,33 +1,35 @@
 {
   "name": "gulp-iced-coffee",
   "description": "Compile IcedCoffeeScript files",
-  "version": "1.2.1",
+  "version": "2.3.2",
   "homepage": "http://github.com/ccheever/gulp-iced-coffee",
   "repository": "git://github.com/ccheever/gulp-iced-coffee.git",
   "author": "Fractal <contact@wearefractal.com> (http://wearefractal.com/)",
+  "contributors": [
+    "Charlie Cheever <ccheever@gmail.com>",
+    "Charles Phillips <charles@doublerebel.com>"
+  ],
   "main": "./index.js",
   "keywords": [
     "gulpplugin"
   ],
   "dependencies": {
-    "event-stream": "~3.0.18",
-    "gulp-util": "~1.2.0",
-    "iced-coffee-script": "~1.6.3-i"
+    "gulp-util": "^3.0.2",
+    "iced-coffee-script": "^108.0.11",
+    "merge": "^1.2.0",
+    "through2": "^0.6.3",
+    "vinyl-sourcemaps-apply": "^0.1.4"
   },
   "devDependencies": {
-    "mocha": "*",
-    "should": "*"
+    "gulp-sourcemaps": "^1.3.0",
+    "mocha": "^2.1.0",
+    "should": "^4.6.2"
   },
   "scripts": {
     "test": "mocha"
   },
   "engines": {
-    "node": ">= 0.4.0"
+    "node": ">= 0.9.0"
   },
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "http://github.com/ccheever/gulp-iced-coffee/raw/master/LICENSE"
-    }
-  ]
+  "license": "MIT"
 }
