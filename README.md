@@ -1,4 +1,4 @@
-[![Build Status](https://secure.travis-ci.org/contra/gulp-coffee.png?branch=master)](https://travis-ci.org/contra/gulp-coffee)
+[![Build Status](https://secure.travis-ci.org/doublerebel/gulp-iced-coffee.png?branch=master)](https://travis-ci.org/doublerebel/gulp-iced-coffee)
 
 ## Information
 
