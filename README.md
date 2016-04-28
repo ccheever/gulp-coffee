@@ -59,7 +59,7 @@ Since `.on(...)` returns `this`, you can compact it as inline code:
 
 ```javascript
 
-gulp.src('./src/*.coffee')
+gulp.src('./src/*.iced')
   .pipe(iced({bare: true}).on('error', gutil.log))
   // ...
 ```
@@ -75,7 +75,7 @@ gulp-iced-coffee can be used in tandem with [gulp-sourcemaps](https://github.com
 ```javascript
 var sourcemaps = require('gulp-sourcemaps');
 
-gulp.src('./src/*.coffee')
+gulp.src('./src/*.iced')
   .pipe(sourcemaps.init())
   .pipe(iced())
   .pipe(sourcemaps.write())
@@ -89,7 +89,7 @@ By default, [gulp-sourcemaps](https://github.com/floridoo/gulp-sourcemaps) write
 ```javascript
 var sourcemaps = require('gulp-sourcemaps');
 
-gulp.src('./src/*.coffee')
+gulp.src('./src/*.iced')
   .pipe(sourcemaps.init())
   .pipe(iced({ bare: true })).on('error', gutil.log)
   .pipe(sourcemaps.write('./maps'))
