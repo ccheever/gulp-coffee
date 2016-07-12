@@ -9,7 +9,7 @@
     "Charlie Cheever <ccheever@gmail.com>",
     "Charles Phillips <charles@doublerebel.com>"
   ],
-  "main": "./index.js",
+  "main": "./gulp-iced-coffee.js",
   "keywords": [
     "gulpplugin"
   ],
@@ -26,6 +26,7 @@
     "should": "^4.6.2"
   },
   "scripts": {
+    "build": "iced --bare --map --runtime node -o ./ -c src/*",
     "test": "mocha"
   },
   "engines": {
