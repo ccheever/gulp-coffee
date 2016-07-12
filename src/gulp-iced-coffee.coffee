@@ -23,6 +23,7 @@ gulpIcedCoffee = (options) ->
     defaults =
       bare: false
       header: false
+      silent: true
       sourceMap: !!file.sourceMap
       sourceRoot: false
       literate: /\.(litcoffee|coffee\.md|liticed|iced\.md)$/.test file.path
@@ -32,11 +33,11 @@ gulpIcedCoffee = (options) ->
     options  = merge defaults, options
 
     try
-      console.log str
+      console.log str unless options.silent
       data = iced.compile str, options
     catch err
       return cb new PluginError "gulp-iced-coffee", err
-    console.log data
+    console.log data unless options.silent
 
     if data and data.v3SourceMap and file.sourceMap
       applySourceMap file, data.v3SourceMap

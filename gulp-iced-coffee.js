@@ -36,6 +36,7 @@ gulpIcedCoffee = function(options) {
     defaults = {
       bare: false,
       header: false,
+      silent: true,
       sourceMap: !!file.sourceMap,
       sourceRoot: false,
       literate: /\.(litcoffee|coffee\.md|liticed|iced\.md)$/.test(file.path),
@@ -45,13 +46,17 @@ gulpIcedCoffee = function(options) {
     };
     options = merge(defaults, options);
     try {
-      console.log(str);
+      if (!options.silent) {
+        console.log(str);
+      }
       data = iced.compile(str, options);
     } catch (_error) {
       err = _error;
       return cb(new PluginError("gulp-iced-coffee", err));
     }
-    console.log(data);
+    if (!options.silent) {
+      console.log(data);
+    }
     if (data && data.v3SourceMap && file.sourceMap) {
       applySourceMap(file, data.v3SourceMap);
       file.contents = new Buffer(data.js);
